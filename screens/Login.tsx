@@ -25,14 +25,18 @@ export default function Login({ navigation }) {
         <Text style={styles.label}>Lembrar-me</Text>
       </View>
       <View style={styles.buttonContent}>
-        <TouchableOpacity
-          style={styles.buttonSecond}
-          onPress={() => navigation.navigate("RegisterUser")}>
-          <Text style={styles.buttonTitleSecond}>Cadastrar-se</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonPrimary}>
-          <Text style={styles.buttonTitlePrimary}>Entrar</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonSecond}
+            onPress={() => navigation.navigate("UserSelect")}>
+            <Text style={styles.buttonTitleSecond}>Cadastrar-se</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonPrimary}>
+            <Text style={styles.buttonTitlePrimary}>Entrar</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
