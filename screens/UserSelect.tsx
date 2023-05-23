@@ -2,8 +2,11 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../css/styles.js";
+import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../App.js";
 
-export default function UserSelect({ navigation }) {
+export default function UserSelect() {
+  const navigation = useNavigation<StackTypes>();
   return (
     <View style={styles.container}>
       <TouchableOpacity

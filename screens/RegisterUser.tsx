@@ -9,8 +9,11 @@ import {
 import CheckBox from "react-native-checkbox-component";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../css/styles.js";
+import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../App.js";
 
-export default function RegisterUser({ navigation }) {
+export default function RegisterUser() {
+  const navigation = useNavigation<StackTypes>();
   return (
     <ScrollView>
       <View style={styles.container}>
