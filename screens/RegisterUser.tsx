@@ -15,7 +15,9 @@ import { StackTypes } from "../App.js";
 export default function RegisterUser() {
   const navigation = useNavigation<StackTypes>();
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.buttonPrev}
