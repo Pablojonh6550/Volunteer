@@ -2,12 +2,14 @@ import React from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import CheckBox from "react-native-checkbox-component";
 import { styles } from "../css/styles.js";
+import { useNavigation } from "@react-navigation/native";
+import { StackTypes } from "../App.js";
 
-export default function Login({ navigation }) {
+export default function Login() {
+  const navigation = useNavigation<StackTypes>();
   return (
     <View style={styles.container}>
       <Image source={require("../assets/logo.png")} style={styles.logo} />
-      {/* <Text style={styles.title}>Login</Text> */}
       <View style={styles.inputContent}>
         <Text style={styles.label}>Digite seu email</Text>
         <TextInput style={styles.input} placeholder="Usuário" />
