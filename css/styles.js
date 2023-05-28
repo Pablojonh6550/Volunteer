@@ -205,13 +205,21 @@ export const styles = StyleSheet.create({
   },
   homeContainer: {
     flex: 1,
+    flexDirection: "column",
+  },
+  taskHomeContainer: {
+    flex: 0.85,
+    width: "100%",
+    marginTop: "30%",
+    paddingHorizontal: 15,
+    paddingVertical: 20,
   },
   tabContainer: {
+    flex: 0.2,
     width: "100%",
     position: "absolute",
     bottom: 0,
     padding: 10,
-    marginBottom: 15,
   },
   tabContent: {
     width: "100%",
@@ -223,6 +231,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 20,
+    marginBottom: 15,
   },
   tabButton: {
     flexDirection: "column",
@@ -246,12 +255,11 @@ export const styles = StyleSheet.create({
     fontSize: 12,
   },
   searchContainer: {
+    flex: 0.15,
     width: "100%",
     position: "absolute",
-
     top: 35,
     padding: 20,
-    marginBottom: 15,
   },
   searchContent: {
     display: "flex",
@@ -269,5 +277,33 @@ export const styles = StyleSheet.create({
   },
   tabTitle: {
     color: "#fff",
+  },
+  taskContainer: {
+    display: "flex",
+    width: "100%",
+    height: 50,
+    backgroundColor: "#5E548E",
+    marginBottom: 20,
+  },
+  perfilContainer: {
+    flex: 1,
+  },
+  perfilContent: {
+    flex: 0.87,
+  },
+  perfilDataContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "FFFFFF",
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginTop: "10%",
+  },
+  buttonPerfilContainer: {
+    width: "100%",
+    display: "flex",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
   },
 });
