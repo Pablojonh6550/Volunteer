@@ -11,7 +11,7 @@ export default function Search() {
           placeholder="Pesquisar..."
           placeholderTextColor="#FFF"
         />
-        <Icon name="search1" size={26} color="#374857" />
+        <Icon name="search1" size={26} color="#fff" />
       </View>
     </View>
   );
