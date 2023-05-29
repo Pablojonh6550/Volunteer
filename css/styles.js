@@ -211,7 +211,7 @@ export const styles = StyleSheet.create({
     flex: 0.85,
     width: "100%",
     marginTop: "30%",
-    paddingHorizontal: 15,
+    // paddingHorizontal: 15,
     paddingVertical: 20,
   },
   tabContainer: {
@@ -280,10 +280,25 @@ export const styles = StyleSheet.create({
   },
   taskContainer: {
     display: "flex",
-    width: "100%",
-    height: 50,
-    backgroundColor: "#5E548E",
-    marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "92%",
+    height: 90,
+    backgroundColor: "#E8E7E7",
+    marginBottom: 35,
+    marginLeft: 15,
+    marginRight: 15,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   perfilContainer: {
     flex: 1,
@@ -305,5 +320,34 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "flex-end",
+  },
+  iconContent: {
+    width: "20%",
+    marginLeft: 15,
+  },
+  titleContent: {
+    width: "40%",
+    // marginHorizontal: 10,
+  },
+  imgContent: {
+    width: "25%",
+  },
+  imgCard: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#D9D9D9",
+  },
+  iconCard: {
+    width: "100%",
+    height: 70,
+    borderRadius: 100,
+    backgroundColor: "#5E548E",
+  },
+  titleCardPrimary: {
+    fontSize: 16,
+    fontWeight: 600,
+  },
+  titleCardSecond: {
+    fontSize: 12,
   },
 });
