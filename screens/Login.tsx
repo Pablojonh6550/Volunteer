@@ -4,6 +4,7 @@ import CheckBox from "react-native-checkbox-component";
 import { styles } from "../css/styles.js";
 import { useNavigation } from "@react-navigation/native";
 import { StackTypes } from "../App.js";
+import firebase from "../database/firebase.js";
 
 export default function Login() {
   const navigation = useNavigation<StackTypes>();
