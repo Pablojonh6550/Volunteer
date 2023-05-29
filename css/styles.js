@@ -264,16 +264,19 @@ export const styles = StyleSheet.create({
   searchContent: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "#5E548E",
   },
   inputSearch: {
-    width: "100%",
+    width: "80%",
     alignSelf: "stretch",
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 10,
     backgroundColor: "#5E548E",
+    color: "#FFFFFF",
   },
   tabTitle: {
     color: "#fff",
@@ -339,7 +342,10 @@ export const styles = StyleSheet.create({
   },
   iconCard: {
     width: "100%",
-    height: 70,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "80%",
     borderRadius: 100,
     backgroundColor: "#5E548E",
   },
