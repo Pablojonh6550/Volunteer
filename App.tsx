@@ -10,6 +10,7 @@ type StackNavigation = {
   UserSelect: undefined;
   Home: undefined;
   Perfil: undefined;
+  Tasks: undefined;
 };
 const Stack = createStackNavigator<StackNavigation>();
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -21,6 +22,7 @@ import RegisterTask from "./screens/RegisterTask";
 import UserSelect from "./screens/UserSelect";
 import Home from "./screens/Home";
 import Perfil from "./screens/Perfil";
+import Tasks from "./screens/Tasks";
 
 export default function App() {
   return (
@@ -59,6 +61,11 @@ export default function App() {
         <Stack.Screen
           name="Perfil"
           component={Perfil}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Tasks"
+          component={Tasks}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
