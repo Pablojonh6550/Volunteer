@@ -1,12 +1,15 @@
 import React from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../css/styles";
 
 export default function TaskCard() {
   return (
     <View style={styles.taskContainer}>
       <View style={styles.iconContent}>
-        <View style={styles.iconCard}></View>
+        <View style={styles.iconCard}>
+          <Icon name="chevron-left" size={30} color="#374857" />
+        </View>
       </View>
       <View style={styles.titleContent}>
         <Text style={styles.titleCardPrimary}>Nome da Atividade</Text>
@@ -15,7 +18,7 @@ export default function TaskCard() {
       </View>
       <View style={styles.imgContent}>
         <View style={styles.imgCard}>
-          <Text>teste</Text>
+          <Icon name="chevron-left" size={30} color="#fff" />
         </View>
       </View>
     </View>
