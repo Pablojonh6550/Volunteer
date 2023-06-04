@@ -338,6 +338,9 @@ export const styles = StyleSheet.create({
   imgCard: {
     width: "100%",
     height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#D9D9D9",
   },
   iconCard: {
