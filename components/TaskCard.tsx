@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Ionicons";
+import Icons from "react-native-vector-icons/AntDesign";
 import { styles } from "../css/styles";
 
 export default function TaskCard() {
@@ -8,7 +9,7 @@ export default function TaskCard() {
     <View style={styles.taskContainer}>
       <View style={styles.iconContent}>
         <View style={styles.iconCard}>
-          <Icon name="chevron-left" size={30} color="#374857" />
+          <Icon name="bookmark-outline" size={30} color="#fff" />
         </View>
       </View>
       <View style={styles.titleContent}>
@@ -18,7 +19,7 @@ export default function TaskCard() {
       </View>
       <View style={styles.imgContent}>
         <View style={styles.imgCard}>
-          <Icon name="chevron-left" size={30} color="#fff" />
+          <Icons name="pluscircleo" size={36} color="#5E548E" />
         </View>
       </View>
     </View>
