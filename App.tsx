@@ -3,7 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type StackNavigation = {
-  Login: undefined;
+  Login: {
+    email: string;
+    senha: string;
+  };
   RegisterUser: undefined;
   RegisterInstitution: undefined;
   RegisterTask: undefined;
@@ -27,7 +30,7 @@ import Tasks from "./screens/Tasks";
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
           component={Login}
