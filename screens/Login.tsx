@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import CheckBox from "react-native-checkbox-component";
 import { styles } from "../css/styles.js";
@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackTypes } from "../App.js";
 import { auth } from "../database/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+
 interface Login {
   email: string;
   password: string;
@@ -27,7 +28,7 @@ export default function Login() {
       signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
           console.log("Usuário autenticado:", userCredential.user);
-          navigation.navigate("Home");
+          navigation.navigate("Home", { email });
           setEmail("");
           setPassword("");
         })
