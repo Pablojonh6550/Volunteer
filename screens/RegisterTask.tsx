@@ -19,7 +19,7 @@ export default function RegisterTask() {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.buttonPrev}
-          onPress={() => navigation.navigate("UserSelect")}>
+          onPress={() => navigation.navigate("Tasks")}>
           <Icon name="chevron-left" size={30} color="#374857" />
         </TouchableOpacity>
         <Text style={styles.title}>Cadastrar Atividade</Text>
