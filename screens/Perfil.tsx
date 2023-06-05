@@ -45,7 +45,7 @@ export default function Perfil() {
       const usersCollection = collection(db, "users");
       const q = query(
         usersCollection,
-        where("email", "==", "pablojonh6550@gmail.com")
+        where("email", "==", email.data.toString())
       );
       const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
       const users: User[] = querySnapshot.docs.map((doc) => ({
