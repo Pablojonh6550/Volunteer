@@ -2,22 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type StackNavigation = {
-  Login: {
-    email: string;
-    senha: string;
-  };
-  RegisterUser: undefined;
-  RegisterInstitution: undefined;
-  RegisterTask: undefined;
-  UserSelect: undefined;
-  Home: undefined;
-  Perfil: undefined;
-  Tasks: undefined;
-};
-const Stack = createStackNavigator<StackNavigation>();
-export type StackTypes = NativeStackNavigationProp<StackNavigation>;
-
+import { User } from "firebase/auth";
+// Screens
 import Login from "./screens/Login";
 import RegisterUser from "./screens/RegisterUser";
 import RegisterInstitution from "./screens/RegisterInstitution";
@@ -26,6 +12,25 @@ import UserSelect from "./screens/UserSelect";
 import Home from "./screens/Home";
 import Perfil from "./screens/Perfil";
 import Tasks from "./screens/Tasks";
+
+const Stack = createStackNavigator<StackNavigation>();
+export type StackTypes = NativeStackNavigationProp<StackNavigation>;
+type StackNavigation = {
+  Login: {
+    email: string;
+    senha: string;
+    user: User;
+  };
+  RegisterUser: undefined;
+  RegisterInstitution: undefined;
+  RegisterTask: undefined;
+  UserSelect: undefined;
+  Home: { email: string | null } | undefined;
+  Perfil: {
+    email: string | null;
+  };
+  Tasks: undefined;
+};
 
 export default function App() {
   return (

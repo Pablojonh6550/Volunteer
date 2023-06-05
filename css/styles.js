@@ -359,4 +359,17 @@ export const styles = StyleSheet.create({
   titleCardSecond: {
     fontSize: 12,
   },
+  createTaskButton: {
+    width: 90,
+    position: "absolute",
+    bottom: 130,
+    right: 20,
+  },
+  taskScreenContainer: {
+    flex: 0.88,
+    width: "100%",
+    marginTop: "15%",
+    // paddingHorizontal: 15,
+    paddingVertical: 20,
+  },
 });
