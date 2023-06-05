@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
@@ -8,9 +8,56 @@ import {
   ScrollView,
 } from "react-native";
 import { styles } from "../css/styles";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { db, getDocs, collection } from "../database/firebase";
+import { QuerySnapshot, DocumentData, query, where } from "firebase/firestore";
 import TabNavigation from "../components/TabNavigation";
 
+type RootStackParamList = {
+  Data: { email: { data: string } };
+};
+
+type DestinoScreenRouteProp = RouteProp<RootStackParamList, "Data">;
+
+interface User {
+  name: string;
+  email: string;
+  phone: number;
+  sex: string;
+  birth: number;
+  password: string;
+  road: string;
+  district: string;
+  number: number;
+  city: string;
+  uf: string;
+  cep: number;
+  complement: string;
+}
+
 export default function Perfil() {
+  const route = useRoute<DestinoScreenRouteProp>();
+  const { email } = route.params;
+  const [data, setData] = useState<User[]>([]);
+
+  useEffect(() => {
+    const userData = async () => {
+      const usersCollection = collection(db, "users");
+      const q = query(
+        usersCollection,
+        where("email", "==", "pablojonh6550@gmail.com")
+      );
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
+      const users: User[] = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      setData(users);
+      console.log(data);
+    };
+
+    userData();
+  }, []);
+
   return (
     <View style={styles.perfilContainer}>
       <View style={styles.perfilContent}>
@@ -80,7 +127,7 @@ export default function Perfil() {
           </View>
         </ScrollView>
       </View>
-      <TabNavigation />
+      <TabNavigation props={email.data} />
     </View>
   );
 }
