@@ -1,7 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 const firebaseConfig = {
   apiKey: "AIzaSyC65GFobzhtY8X0u-TNN0L58jl0fH8S6Wo",
@@ -77,4 +81,12 @@ const createUserInst = async (data, adress) => {
   }
 };
 
-export { db, createUser, createUserInst, auth };
+export {
+  db,
+  createUser,
+  createUserInst,
+  auth,
+  onAuthStateChanged,
+  getDocs,
+  collection,
+};
