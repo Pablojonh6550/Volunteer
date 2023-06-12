@@ -24,7 +24,7 @@ const auth = getAuth(app);
 const createUser = async (data, adress) => {
   try {
     const auth = getAuth(app);
-    // const docRef = await addDoc(collection(db, "users"));
+
     const userData = {
       name: data.name,
       email: data.email,
@@ -62,7 +62,8 @@ const createUser = async (data, adress) => {
 const createUserInst = async (data, adress) => {
   try {
     const auth = getAuth(app);
-    const data = {
+
+    const userData = {
       name: data.name,
       email: data.email,
       phone: data.phone,
@@ -76,16 +77,20 @@ const createUserInst = async (data, adress) => {
       cep: adress.cep,
       complement: adress.complement,
     };
-    const docRef = await addDoc(collection(db, "users"));
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      data.email,
+      data.password
+    );
+    const user = userCredential.user;
 
-    createUserWithEmailAndPassword(auth, data.email, data.password)
+    setDoc(doc(db, "users", user.uid), userData)
       .then(() => {
-        console.log("Usuário cadastrado: ", docRef.id);
+        console.log("Dados do usuário armazenados com sucesso!");
       })
       .catch((error) => {
-        console.error("Erro ao cadastrar usuário:", error);
+        console.error("Erro ao armazenar dados do usuário:", error);
       });
-    console.log("Usuário cadastrado: ", docRef.id);
   } catch (error) {
     console.error("Erro ao cadastrar usuário:", error);
   }
@@ -100,6 +105,17 @@ const registerTask = async (data) => {
     console.error("Erro ao cadastrar atividade:", error);
   }
 };
+
+const registerUserTask = async (data) => {
+  try {
+    const randomId = uuidv4();
+    await setDoc(doc(db, "user_tasks", randomId.toString()), data);
+    console.log("Usuario registrado armazenados com sucesso!");
+  } catch (error) {
+    console.error("Erro ao cadastrar atividade:", error);
+  }
+};
+
 export {
   db,
   createUser,
@@ -109,4 +125,5 @@ export {
   getDocs,
   collection,
   registerTask,
+  registerUserTask,
 };
