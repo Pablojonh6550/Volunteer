@@ -91,6 +91,7 @@ export const styles = StyleSheet.create({
     gap: 14,
     backgroundColor: "#E8E7E7",
     borderRadius: 10,
+    color: "black",
   },
   inputContainerSecond: {
     display: "flex",

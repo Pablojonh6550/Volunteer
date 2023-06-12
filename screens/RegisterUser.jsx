@@ -7,36 +7,22 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import CheckBox from "react-native-checkbox-component";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../css/styles.js";
-import { useNavigation } from "@react-navigation/native";
 import { StackTypes } from "../App.js";
 import { useState } from "react";
-import { createUserInst } from "../database/firebase";
-interface User {
-  name: string;
-  email: string;
-  phone: number;
-  cnpj: number;
-}
+import { db, createUser } from "../database/firebase";
 
-interface Adress {
-  road: string;
-  district: string;
-  number: number;
-  city: string;
-  uf: string;
-  cep: number;
-  complement: string;
-}
-
-export default function RegisterInstitution() {
-  const navigation = useNavigation<StackTypes>();
-  // Campos de cadastro instituição
+export default function RegisterUser() {
+  const navigation = useNavigation();
+  // Campos de cadastro dados do usuário
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [cnpj, setCnpj] = useState("");
+  const [sex, setSex] = useState("");
+  const [birth, setBirth] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   // Campos de cadastro para o endereço
@@ -49,42 +35,51 @@ export default function RegisterInstitution() {
   const [complement, setComplement] = useState("");
 
   const handleRegisterUser = () => {
-    if (password == confirm) {
-      setPassword(password);
-    } else {
-      Alert.alert("Os campos de senhas são diferentes.");
+    try {
+      if (password == confirm) {
+        setPassword(password);
+      } else {
+        Alert.alert("Os campos de senhas são diferentes.");
+      }
+
+      const data = {
+        name: name,
+        email: email,
+        phone: parseInt(phone),
+        sex: sex,
+        birth: parseInt(birth),
+        password: password,
+      };
+
+      const adress = {
+        road: road,
+        district: district,
+        number: parseInt(number),
+        city: city,
+        uf: uf,
+        cep: parseInt(cep),
+        complement: complement,
+      };
+      createUser(data, adress);
+
+      setName("");
+      setEmail("");
+      setPhone("");
+      setBirth("");
+      setSex("");
+      setPassword("");
+      setConfirm("");
+      setRoad("");
+      setDistrict("");
+      setNumber("");
+      setCity("");
+      setUf("");
+      setCep("");
+      setComplement("");
+      navigation.navigate("Home", { user });
+    } catch (error) {
+      console.log("Erro ao adicionar usuário:", error);
     }
-    const data: User = {
-      name: name,
-      email: email,
-      phone: parseInt(phone),
-      cnpj: parseInt(cnpj),
-    };
-
-    const adress: Adress = {
-      road: road,
-      district: district,
-      number: parseInt(number),
-      city: city,
-      uf: uf,
-      cep: parseInt(cep),
-      complement: complement,
-    };
-    createUserInst(data, adress);
-
-    setName("");
-    setEmail("");
-    setPhone("");
-    setCnpj("");
-    setPassword("");
-    setConfirm("");
-    setRoad("");
-    setDistrict("");
-    setNumber("");
-    setCity("");
-    setUf("");
-    setCep("");
-    setComplement("");
   };
 
   return (
@@ -126,20 +121,27 @@ export default function RegisterInstitution() {
           <TextInput
             style={styles.input}
             placeholder="(##)#####-####"
-            keyboardType="numeric"
             value={phone}
             onChange={(event) => setPhone(event.nativeEvent.text)}
+            keyboardType="numeric"
           />
         </View>
         <View style={styles.inputContent}>
-          <Text style={styles.label}>Cnpj</Text>
+          <Text style={styles.label}>Data de nascimento</Text>
           <TextInput
             style={styles.input}
-            placeholder="##.###.###/####-##"
+            placeholder="##/##/####"
+            value={birth}
+            onChange={(event) => setBirth(event.nativeEvent.text)}
             keyboardType="numeric"
-            value={cnpj}
-            onChange={(event) => setCnpj(event.nativeEvent.text)}
           />
+        </View>
+        <View style={styles.checkContent}>
+          <Text style={styles.label}>Sexo</Text>
+          <CheckBox style={styles.checkButton} />
+          <Text style={styles.label}>Masculino</Text>
+          <CheckBox style={styles.checkButton} />
+          <Text style={styles.label}>Feminino</Text>
         </View>
         <View style={styles.divisor}>
           <View style={styles.hr} />
@@ -170,9 +172,9 @@ export default function RegisterInstitution() {
             <TextInput
               style={styles.input}
               placeholder="Num."
-              keyboardType="numeric"
               value={number}
               onChange={(event) => setNumber(event.nativeEvent.text)}
+              keyboardType="numeric"
             />
           </View>
         </View>
@@ -202,9 +204,9 @@ export default function RegisterInstitution() {
             <TextInput
               style={styles.input}
               placeholder="#####-###"
-              keyboardType="numeric"
               value={cep}
               onChange={(event) => setCep(event.nativeEvent.text)}
+              keyboardType="numeric"
             />
           </View>
           <View style={styles.inputContentthird}>
@@ -227,16 +229,16 @@ export default function RegisterInstitution() {
           <TextInput
             style={styles.input}
             placeholder="Senha"
+            secureTextEntry={true}
             value={password}
             onChange={(event) => setPassword(event.nativeEvent.text)}
-            secureTextEntry={true}
           />
         </View>
         <View style={styles.inputContent}>
           <Text style={styles.label}>Confirmar senha</Text>
           <TextInput
             style={styles.input}
-            placeholder="Confirmar senha"
+            placeholder="Confirmar Senha"
             secureTextEntry={true}
             value={confirm}
             onChange={(event) => setConfirm(event.nativeEvent.text)}

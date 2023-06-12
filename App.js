@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { User } from "firebase/auth";
 // Screens
 import Login from "./screens/Login";
 import RegisterUser from "./screens/RegisterUser";
@@ -13,24 +11,7 @@ import Home from "./screens/Home";
 import Perfil from "./screens/Perfil";
 import Tasks from "./screens/Tasks";
 
-const Stack = createStackNavigator<StackNavigation>();
-export type StackTypes = NativeStackNavigationProp<StackNavigation>;
-type StackNavigation = {
-  Login: {
-    email: string;
-    senha: string;
-    user: User;
-  };
-  RegisterUser: undefined;
-  RegisterInstitution: undefined;
-  RegisterTask: undefined;
-  UserSelect: undefined;
-  Home: { email: string | null } | undefined;
-  Perfil: {
-    email: string | null;
-  };
-  Tasks: undefined;
-};
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
