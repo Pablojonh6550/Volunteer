@@ -9,6 +9,7 @@ import { db, collection, getDocs } from "../database/firebase";
 export default function Home() {
   const route = useRoute();
   const userData = route.params.userData;
+  const [userId, setUserId] = useState(userData);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function Home() {
       const allTasks = await getDocs(collection(db, "tasks"));
       const objects = allTasks.docs.map((doc) => doc.data());
       setTasks(objects);
+      setUserId(userData);
     };
     handleAllTasks();
   }, []);
@@ -25,7 +27,7 @@ export default function Home() {
       <View style={styles.taskHomeContainer}>
         <ScrollView>
           {tasks.map((task, index) => {
-            return <TaskCard key={index} props={task} />;
+            return <TaskCard key={index} props={task} id={userId} />;
           })}
         </ScrollView>
       </View>
