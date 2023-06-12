@@ -10,6 +10,7 @@ import UserSelect from "./screens/UserSelect";
 import Home from "./screens/Home";
 import Perfil from "./screens/Perfil";
 import Tasks from "./screens/Tasks";
+import DescriptionTask from "./screens/DescriptionTask";
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,11 @@ export default function App() {
         <Stack.Screen
           name="Tasks"
           component={Tasks}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DescriptionTask"
+          component={DescriptionTask}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
