@@ -15,7 +15,13 @@ export default function Home() {
   useEffect(() => {
     const handleAllTasks = async () => {
       const allTasks = await getDocs(collection(db, "tasks"));
-      const objects = allTasks.docs.map((doc) => doc.data());
+      const objects = allTasks.docs.map((doc) => {
+        const response = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        return response;
+      });
       setTasks(objects);
       setUserId(userData);
     };
@@ -27,7 +33,14 @@ export default function Home() {
       <View style={styles.taskHomeContainer}>
         <ScrollView>
           {tasks.map((task, index) => {
-            return <TaskCard key={index} props={task} id={userId} />;
+            return (
+              <TaskCard
+                key={index}
+                props={task.data}
+                id={userId}
+                tasksId={task.id}
+              />
+            );
           })}
         </ScrollView>
       </View>

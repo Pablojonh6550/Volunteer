@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Icons from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 import { styles } from "../css/styles";
 
-export default function TaskCard({ props }) {
+export default function TaskCard({ props, id, tasksId }) {
   const [data, setData] = useState(props);
+  const [user, setUser] = useState(id);
+  const [taskId, setTaskId] = useState(tasksId);
   const dataString = data.initial.toString();
+  const navigation = useNavigation();
+
+  const handleTask = () => {
+    navigation.navigate("DescriptionTask", { data, user, taskId });
+  };
 
   return (
     <View style={styles.taskContainer}>
@@ -27,9 +35,11 @@ export default function TaskCard({ props }) {
         </Text>
       </View>
       <View style={styles.imgContent}>
-        <View style={styles.imgCard}>
-          <Icons name="rightcircleo" size={36} color="#5E548E" />
-        </View>
+        <TouchableOpacity onPress={handleTask}>
+          <View style={styles.imgCard}>
+            <Icons name="rightcircleo" size={36} color="#5E548E" />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
