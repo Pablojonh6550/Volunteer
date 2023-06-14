@@ -61,7 +61,9 @@ export default function DescriptionTask() {
       </View>
       <View style={styles.buttonContent}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonSecond}>
+          <TouchableOpacity
+            style={styles.buttonSecond}
+            onPress={() => navigation.navigate("Tasks", { user })}>
             <Text style={styles.buttonTitleSecond}>Fechar</Text>
           </TouchableOpacity>
         </View>
